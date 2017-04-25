@@ -79,9 +79,9 @@ bool ModuleCastleScene::CleanUp()
 	LOG("Unloading castle scene");
 	yflag = -1788;
 	yflag2 = -1279;
-	SDL_DestroyTexture(graphics);
-	SDL_DestroyTexture(graphics2);
-	SDL_DestroyTexture(graphics3);
+	App->textures->Unload(graphics);
+	App->textures->Unload(graphics2);
+	App->textures->Unload(graphics3);
 	App->player->Disable();
 	App->particles->Disable();
 	App->enemies->Disable();

@@ -4,7 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 #include "ModuleParticles.h"
 
 #include "SDL/include/SDL_timer.h"
@@ -96,10 +96,10 @@ update_status ModuleParticles::Update()
 		else if (SDL_GetTicks() >= p->born)
 		{
 			
-			/*collider->type == COLLIDER_PLAYER_SHOT && p->apperance == 0)
+			if (p->collider->type == COLLIDER_PLAYER_SHOT && p->apperance == 0)
 			{
 				p->position.x = App->player->position.x + 11; p->apperance++;
-			}*/
+			}
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 			if (p->fx_played == false)
 			{
@@ -111,7 +111,7 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y,COLLIDER_TYPE collider_type, Uint32 delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -122,8 +122,8 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 			
 			p->position.x = x;
 			p->position.y = y;
-			/*if (collider_type != COLLIDER_NONE)
-				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);*/
+			if (collider_type != COLLIDER_NONE)
+				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
 			break;
 		}
@@ -131,7 +131,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 }
 
 // TODO 5: Make so every time a particle hits a wall it triggers an explosion particle
-/*void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -143,7 +143,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Uint32
 			break;
 		}
 	}
-}*/
+}
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
@@ -160,8 +160,8 @@ Particle::Particle(const Particle& p) :
 
 Particle::~Particle()
 {
-	/*if (collider != nullptr)
-		App->collision->EraseCollider(collider);*/
+	if (collider != nullptr)
+		App->collision->EraseCollider(collider);
 }
 
 bool Particle::Update()
@@ -181,10 +181,10 @@ bool Particle::Update()
 	position.x += speed.x;
 	position.y += speed.y;
 
-	/*if (collider != nullptr && SDL_GetTicks() >= born)
+	if (collider != nullptr && SDL_GetTicks() >= born)
 		collider->SetPos(position.x, position.y);
 	if (collider != nullptr && SDL_GetTicks() < born)
-		collider->SetPos(-50, 500);*/
+		collider->SetPos(-50, 500);
 	return ret;
 }
 
