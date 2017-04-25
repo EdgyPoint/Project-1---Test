@@ -202,8 +202,4 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->fade->FadeToBlack(App->scene_castle, App->scene_score, 0.1f);
 		}
 	}
-		
-
-	
-
 }
