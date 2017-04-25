@@ -22,39 +22,263 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	graphics = App->textures->Load("assets/images/Marion.png");
+	graphics = App->textures->Load("assets/images/particles.png");
 
-	marionbeam[0].anim.PushBack({ 166,67, 7, 29});
-	marionbeam[0].anim.loop = false;
-	marionbeam[0].anim.speed = 0.3f;
-	marionbeam[0].speed.y = -4;
-	marionbeam[0].life = 4000;
+	marionbeam_lv1[0].anim.PushBack({ 166,67, 7, 29 });
+	marionbeam_lv1[0].anim.loop = false;
+	marionbeam_lv1[0].anim.speed = 0.3f;
+	marionbeam_lv1[0].speed.y = -4;
+	marionbeam_lv1[0].life = 4000;
 
-	marionbeam[1].anim.PushBack({ 166, 97, 7, 29 });
-	marionbeam[1].anim.loop = false;
-	marionbeam[1].anim.speed = 0.3f;
-	marionbeam[1].speed.y = -4;
-	marionbeam[1].life = 4000;
+	marionbeam_lv1[1].anim.PushBack({ 166, 97, 7, 29 });
+	marionbeam_lv1[1].anim.loop = false;
+	marionbeam_lv1[1].anim.speed = 0.3f;
+	marionbeam_lv1[1].speed.y = -4;
+	marionbeam_lv1[1].life = 4000;
 
-	marionbeam[2].anim.PushBack({ 166, 127, 7, 29 });
-	marionbeam[2].anim.loop = false;
-	marionbeam[2].anim.speed = 0.3f;
-	marionbeam[2].speed.y = -4;
-	marionbeam[2].life = 4000;
+	marionbeam_lv1[2].anim.PushBack({ 166, 127, 7, 29 });
+	marionbeam_lv1[2].anim.loop = false;
+	marionbeam_lv1[2].anim.speed = 0.3f;
+	marionbeam_lv1[2].speed.y = -4;
+	marionbeam_lv1[2].life = 4000;
+
+	marionbeam_lv2[0].anim.PushBack({ 192,68, 15, 28 });
+	marionbeam_lv2[0].anim.loop = false;
+	marionbeam_lv2[0].anim.speed = 0.3f;
+	marionbeam_lv2[0].speed.y = -4;
+	marionbeam_lv2[0].life = 4000;
+
+	marionbeam_lv2[1].anim.PushBack({ 192, 97, 15, 29 });
+	marionbeam_lv2[1].anim.loop = false;
+	marionbeam_lv2[1].anim.speed = 0.3f;
+	marionbeam_lv2[1].speed.y = -4;
+	marionbeam_lv2[1].life = 4000;
+
+	marionbeam_lv2[2].anim.PushBack({ 192, 127, 15, 29 });
+	marionbeam_lv2[2].anim.loop = false;
+	marionbeam_lv2[2].anim.speed = 0.3f;
+	marionbeam_lv2[2].speed.y = -4;
+	marionbeam_lv2[2].life = 4000;
 
 
-	balloonshoot.anim.PushBack({ 31, 425, 6, 6 });
-	balloonshoot.anim.PushBack({ 47, 425, 6, 6 });
-	balloonshoot.anim.PushBack({ 79, 425, 6, 6 });
-	balloonshoot.anim.PushBack({ 111, 425, 6, 6 });
-	balloonshoot.anim.PushBack({ 143, 425, 6, 6 });
-	balloonshoot.anim.PushBack({ 191, 425, 6, 6 });
-	balloonshoot.anim.PushBack({ 15, 441, 6, 6 });
-	balloonshoot.anim.PushBack({ 47, 441, 6, 6 });
-	balloonshoot.anim.loop = true;
-	balloonshoot.anim.speed = 0.3f;
-	balloonshoot.speed.y = 3;
-	balloonshoot.life = 4000;
+	smallshot.anim.PushBack({ 31, 425, 6, 6 });
+	smallshot.anim.PushBack({ 47, 425, 6, 6 });
+	smallshot.anim.PushBack({ 79, 425, 6, 6 });
+	smallshot.anim.PushBack({ 111, 425, 6, 6 });
+	smallshot.anim.PushBack({ 143, 425, 6, 6 });
+	smallshot.anim.PushBack({ 191, 425, 6, 6 });
+	smallshot.anim.PushBack({ 15, 441, 6, 6 });
+	smallshot.anim.PushBack({ 47, 441, 6, 6 });
+	smallshot.anim.loop = true;
+	smallshot.anim.speed = 0.3f;
+	smallshot.speed.y = 3;
+	smallshot.life = 4000;
+
+	presmallshot.anim.PushBack({ 0, 424, 8, 8 });
+	presmallshot.anim.PushBack({ 8, 424, 8, 8 });
+	smallshot.anim.loop = true;
+	presmallshot.anim.speed = 0.3f;
+	presmallshot.life = 1;
+
+	//First two frames of the mortar shot
+	prebigshot.anim.PushBack({ 23, 388, 16, 16 });
+	prebigshot.anim.PushBack({ 47, 387, 19, 19 });
+	prebigshot.anim.loop = false;
+	prebigshot.anim.speed = 1;
+	prebigshot.speed.y = 0.55f;
+	prebigshot.life = 400;
+
+	//Mortar shot
+	bigshot.anim.PushBack({ 74, 391, 12, 12 });
+	bigshot.anim.PushBack({ 96, 391, 12, 12 });
+	bigshot.anim.PushBack({ 118, 391, 12, 12 });
+	bigshot.anim.loop = true;
+	bigshot.anim.speed = 0.55f;
+	bigshot.speed.y = 3;
+	bigshot.life = 4000;
+
+
+	coin.anim.PushBack({ 237, 361, 12, 16 });
+	coin.anim.PushBack({ 259, 361, 12, 16 });
+	coin.anim.PushBack({ 285, 361, 12, 16 });
+	coin.anim.PushBack({ 314, 361, 12, 16 });
+	coin.anim.PushBack({ 239, 388, 12, 16 });
+	coin.anim.PushBack({ 263, 388, 12, 16 });
+	coin.anim.PushBack({ 287, 388, 12, 16 });
+	coin.anim.PushBack({ 314, 388, 12, 16 });
+	coin.anim.loop = true;
+	coin.life = 10000;
+	coin.anim.speed = 0.1f;
+
+
+	powerup.anim.PushBack({ 235, 423, 22, 13 });
+	powerup.anim.PushBack({ 259, 423, 22, 13 });
+	powerup.anim.PushBack({ 282, 423, 22, 13 });
+	powerup.anim.PushBack({ 305, 423, 22, 13 });
+	powerup.anim.PushBack({ 328, 423, 22, 13 });
+	powerup.anim.PushBack({ 351, 423, 22, 13 });
+	powerup.anim.PushBack({ 374, 423, 22, 13 });
+	powerup.anim.PushBack({ 397, 423, 22, 13 });
+	powerup.anim.loop = true;
+	powerup.anim.speed = 0.3f;
+	powerup.speed.x = 1;
+	powerup.speed.y = 1;
+	powerup.life = 20000;
+
+	impact.anim.PushBack({ 448, 768, 16, 42 });
+	impact.anim.PushBack({ 464, 768, 16, 42 });
+	impact.anim.PushBack({ 480, 768, 16, 42 });
+	impact.anim.PushBack({ 496, 768, 16, 42 });
+	impact.anim.PushBack({ 512, 768, 16, 42 });
+	impact.anim.PushBack({ 528, 768, 16, 42 });
+	impact.anim.PushBack({ 544, 768, 16, 42 });
+	impact.anim.PushBack({ 560, 768, 16, 42 });
+	impact.anim.PushBack({ 576, 768, 16, 42 });
+	impact.anim.PushBack({ 592, 768, 16, 42 });
+	impact.anim.PushBack({ 608, 768, 16, 42 });
+	impact.anim.PushBack({ 448, 810, 16, 42 });
+	impact.anim.PushBack({ 464, 810, 16, 42 });
+	impact.anim.PushBack({ 480, 810, 16, 42 });
+	impact.anim.PushBack({ 496, 810, 16, 42 });
+	impact.anim.PushBack({ 512, 810, 16, 42 });
+	impact.anim.PushBack({ 528, 810, 16, 42 });
+	impact.anim.PushBack({ 544, 810, 16, 42 });
+	impact.anim.PushBack({ 560, 810, 16, 42 });
+	impact.anim.PushBack({ 576, 810, 16, 42 });
+	impact.anim.PushBack({ 592, 810, 16, 42 });
+	impact.anim.loop = false;
+	impact.anim.speed = 0.5f;
+	impact.life = 500;
+
+
+	small_explosion.anim.PushBack({ 0, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 56, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 112, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 168, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 224, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 280, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 336, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 392, 768, 56, 64 });
+	small_explosion.anim.PushBack({ 0, 832, 56, 64 });
+	small_explosion.anim.PushBack({ 56, 832, 56, 64 });
+	small_explosion.anim.PushBack({ 112, 832, 56, 64 });
+	small_explosion.anim.PushBack({ 168, 832, 56, 64 });
+	small_explosion.anim.PushBack({ 224, 832, 56, 64 });
+	small_explosion.anim.PushBack({ 280, 832, 56, 64 });
+	small_explosion.anim.PushBack({ 336, 832, 56, 64 });
+	small_explosion.anim.loop = false;
+	small_explosion.anim.speed = 0.5f;
+	small_explosion.life = 500;
+
+	medium_explosion.anim.PushBack({ 0, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 106, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 212, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 318, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 424, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 530, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 0, 593, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 106, 593, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 212, 593, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 318, 593, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 424, 593, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.PushBack({ 530, 593, 106, 106 });
+	medium_explosion.anim.PushBack({ 636, 477, 106, 106 });
+	medium_explosion.anim.loop = false;
+	medium_explosion.anim.speed = 0.5f;
+	medium_explosion.life = 1000;
+
+	playercollision.anim.PushBack({ 0, 896, 31, 31 });
+	playercollision.anim.PushBack({ 31, 896, 31, 31 });
+	playercollision.anim.PushBack({ 62, 896, 31, 31 });
+	playercollision.anim.PushBack({ 93, 896, 31, 31 });
+	playercollision.anim.PushBack({ 124, 896, 31, 31 });
+	playercollision.anim.PushBack({ 155, 896, 31, 31 });
+	playercollision.anim.PushBack({ 186, 896, 31, 31 });
+	playercollision.anim.PushBack({ 217, 896, 31, 31 });
+	playercollision.anim.PushBack({ 248, 896, 31, 31 });
+	playercollision.anim.loop = false;
+	playercollision.anim.speed = 0.5f;
+	playercollision.life = 450;
+
+	playerstunned.anim.PushBack({ 279, 896, 28, 20 });
+	playerstunned.anim.PushBack({ 307, 896, 28, 20 });
+	playerstunned.anim.PushBack({ 335, 896, 28, 20 });
+	playerstunned.anim.PushBack({ 363, 896, 28, 20 });
+	playerstunned.anim.PushBack({ 391, 896, 28, 20 });
+	playerstunned.anim.PushBack({ 419, 896, 28, 20 });
+	playerstunned.anim.PushBack({ 447, 896, 28, 20 });
+	playerstunned.anim.loop = true;
+	playerstunned.anim.speed = 0.5f;
+	playerstunned.life = 1000;
+
+	magicspark[0].anim.PushBack({ 168, 0, 11, 11 });
+	magicspark[0].anim.PushBack({ 183, 0, 11, 11 });
+	magicspark[0].anim.PushBack({ 198, 0, 11, 11 });
+	magicspark[0].anim.PushBack({ 213, 0, 11, 11 });
+	magicspark[0].anim.PushBack({ 228, 0, 11, 11 });
+	magicspark[0].anim.PushBack({ 243, 0, 11, 11 });
+	magicspark[0].anim.PushBack({ 258, 0, 11, 11 });
+	magicspark[0].anim.PushBack({ 273, 0, 11, 11 });
+	magicspark[0].anim.loop = false;
+	magicspark[0].anim.speed = 0.33f;
+	magicspark[0].speed.y = 1.0f;
+	magicspark[0].life = 400;
+
+	magicspark[1].anim.PushBack({ 168, 15, 11, 11 });
+	magicspark[1].anim.PushBack({ 183, 15, 11, 11 });
+	magicspark[1].anim.PushBack({ 198, 15, 11, 11 });
+	magicspark[1].anim.PushBack({ 213, 15, 11, 11 });
+	magicspark[1].anim.PushBack({ 228, 15, 11, 11 });
+	magicspark[1].anim.PushBack({ 243, 15, 11, 11 });
+	magicspark[1].anim.PushBack({ 258, 15, 11, 11 });
+	magicspark[1].anim.PushBack({ 273, 15, 11, 11 });
+	magicspark[1].anim.loop = false;
+	magicspark[1].anim.speed = 0.33f;
+	magicspark[1].speed.y = 1.0f;
+	magicspark[1].life = 400;
+
+	magicspark[2].anim.PushBack({ 168, 30, 11, 11 });
+	magicspark[2].anim.PushBack({ 183, 30, 11, 11 });
+	magicspark[2].anim.PushBack({ 198, 30, 11, 11 });
+	magicspark[2].anim.PushBack({ 213, 30, 11, 11 });
+	magicspark[2].anim.PushBack({ 228, 30, 11, 11 });
+	magicspark[2].anim.PushBack({ 243, 30, 11, 11 });
+	magicspark[2].anim.PushBack({ 258, 30, 11, 11 });
+	magicspark[2].anim.PushBack({ 273, 30, 11, 11 });
+	magicspark[2].anim.loop = false;
+	magicspark[2].anim.speed = 0.33f;
+	magicspark[2].speed.y = 1.0f;
+	magicspark[2].life = 400;
+
+	magicspark[3].anim.PushBack({ 168, 45, 11, 11 });
+	magicspark[3].anim.PushBack({ 183, 45, 11, 11 });
+	magicspark[3].anim.PushBack({ 198, 45, 11, 11 });
+	magicspark[3].anim.PushBack({ 213, 45, 11, 11 });
+	magicspark[3].anim.PushBack({ 228, 45, 11, 11 });
+	magicspark[3].anim.PushBack({ 243, 45, 11, 11 });
+	magicspark[3].anim.PushBack({ 258, 45, 11, 11 });
+	magicspark[3].anim.PushBack({ 273, 45, 11, 11 });
+	magicspark[3].anim.loop = false;
+	magicspark[3].anim.speed = 0.33f;
+	magicspark[3].speed.y = 1.0f;
+	magicspark[3].life = 400;
+
+	powerupscore.anim.PushBack({ 44, 0, 15, 7 });
+	powerupscore.anim.PushBack({ 44, 7, 15, 7 });
+	powerupscore.anim.loop = true;
+	powerupscore.anim.speed = 0.1f;
+	powerupscore.life = 1000;
 
 
 	return true;
@@ -111,7 +335,7 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y,COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y,COLLIDER_TYPE collider_type, Uint32 delay, ITEM_TYPE item_type)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -124,6 +348,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y,COLLIDE
 			p->position.y = y;
 			if (collider_type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+			p->itemtype = item_type;
 			active[i] = p;
 			break;
 		}

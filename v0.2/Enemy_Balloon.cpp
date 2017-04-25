@@ -37,7 +37,7 @@ void Enemy_Balloon::Shoot()
 	{
 		if (SDL_GetTicks() >= reload)
 		{
-			App->particles->AddParticle(App->particles->balloonshoot, position.x + 18, position.y + 53, COLLIDER_ENEMY_SHOT);
+			//App->particles->AddParticle(App->particles->balloonshoot, position.x + 18, position.y + 53, COLLIDER_ENEMY_SHOT);
 			reload = SDL_GetTicks() + 500;
 		}
 	}

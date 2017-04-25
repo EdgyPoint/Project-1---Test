@@ -41,7 +41,6 @@ bool ModuleScoreScene::CleanUp()
 {
 	LOG("Unloading score scene");
 	App->textures->Unload(graphics);
-	App->player->Disable();
 
 	return true;
 }

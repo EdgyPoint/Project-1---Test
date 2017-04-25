@@ -13,6 +13,14 @@ struct SDL_Texture;
 struct Collider;
 enum COLLIDER_TYPE;
 
+enum ITEM_TYPE
+{
+	ITEM_NONE,
+	ITEM_POWERUP,
+	ITEM_COIN,
+	ITEM_BOMB
+};
+
 struct Particle
 {
 	Collider* collider = nullptr;
@@ -22,6 +30,7 @@ struct Particle
 	iPoint speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
+	ITEM_TYPE itemtype;;
 	bool fx_played = false;
 	int apperance = 0;
 
@@ -42,7 +51,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	void AddParticle(const Particle& particle, int x, int y,COLLIDER_TYPE collider_type, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y,COLLIDER_TYPE collider_type, Uint32 delay = 0, ITEM_TYPE item_type = ITEM_NONE);
 
 private:
 
@@ -52,8 +61,21 @@ private:
 
 public:
 
-	Particle marionbeam[3];
-	Particle balloonshoot;
+	Particle marionbeam_lv1[3];
+	Particle marionbeam_lv2[3];
+	Particle smallshot;
+	Particle prebigshot;
+	Particle bigshot;
+	Particle powerup;
+	Particle magicspark[4];
+	Particle impact;
+	Particle small_explosion;
+	Particle medium_explosion;
+	Particle playercollision;
+	Particle playerstunned;
+	Particle presmallshot;
+	Particle powerupscore;
+	Particle coin;
 };
 
 #endif // __MODULEPARTICLES_H__
