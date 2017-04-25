@@ -5,7 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntroScene.h"
 #include "ModuleCastleScene.h"
@@ -68,7 +68,7 @@ bool ModulePlayer::Start()
 	position.x = 100;
 	position.y = 220;
 	
-	//player_col = App->collision->AddCollider({ 0, 0, 21, 32 }, COLLIDER_PLAYER, this);
+	player_col = App->collision->AddCollider({ 0, 0, 21, 32 }, COLLIDER_PLAYER, this);
 
 	return true;
 }
@@ -149,14 +149,14 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_C] == KEY_STATE::KEY_REPEAT && SDL_GetTicks() >= shot)
 	{
 		shot = (SDL_GetTicks() + 500);
-		/*App->particles->AddParticle(App->particles->marionbeam[beam++], position.x + 11, position.y - 25, COLLIDER_PLAYER_SHOT);
+		App->particles->AddParticle(App->particles->marionbeam[beam++], position.x + 11, position.y - 25, COLLIDER_PLAYER_SHOT);
 		if (beam == 3) beam = 0;
 		App->particles->AddParticle(App->particles->marionbeam[beam++], position.x + 11, position.y + 5, COLLIDER_PLAYER_SHOT, 140);
 		if (beam == 3) beam = 0;
 		App->particles->AddParticle(App->particles->marionbeam[beam++], position.x + 11, position.y + 35, COLLIDER_PLAYER_SHOT, 280);
 		if (beam == 3) beam = 0;
 		App->particles->AddParticle(App->particles->marionbeam[beam++], position.x + 11, position.y + 65, COLLIDER_PLAYER_SHOT, 420);	
-		if (beam == 3) beam = 0;*/
+		if (beam == 3) beam = 0;
 		App->audio->sfx = App->audio->LoadSFX("assets/SFX/Marion Shot.wav");
 		Mix_PlayChannel(-1, App->audio->sfx, 0);
 	}
@@ -168,7 +168,7 @@ update_status ModulePlayer::Update()
 		transition = 0;
 	}
 
-	//player_col->SetPos(position.x + 3, position.y);
+	player_col->SetPos(position.x + 3, position.y);
 	
 	// Draw everything --------------------------------------
 

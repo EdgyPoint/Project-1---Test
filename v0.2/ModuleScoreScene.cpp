@@ -8,9 +8,7 @@
 #include "ModuleCastleScene.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleScoreScene.h"
-
 #include "ModuleAudio.h"
-//#include "ModuleCollision.h"
 #include "SDL/include/SDL.h"
 
 
@@ -44,7 +42,6 @@ bool ModuleScoreScene::CleanUp()
 	LOG("Unloading score scene");
 	App->textures->Unload(graphics);
 	App->player->Disable();
-	//App->collision->Disable();
 
 	return true;
 }

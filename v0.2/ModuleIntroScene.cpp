@@ -8,8 +8,6 @@
 #include "ModuleCastleScene.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleScoreScene.h"
-
-#include "ModuleCollision.h"
 #include "ModuleAudio.h"
 #include "SDL/include/SDL.h"
 
@@ -45,7 +43,6 @@ bool ModuleIntroScene::CleanUp()
 {
 	LOG("Unloading intro scene");
 	App->textures->Unload(graphics);
-	App->collision->Disable();
 	
 	return true;
 }

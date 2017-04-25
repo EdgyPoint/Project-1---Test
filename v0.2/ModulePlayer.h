@@ -5,11 +5,11 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "p2Point.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 
 
 struct SDL_Texture;
-//struct Collider;
+struct Collider;
 
 class ModulePlayer : public Module
 {
@@ -25,7 +25,7 @@ public:
 public:
 
 	SDL_Texture* graphics = nullptr;
-	//Collider* player_col = nullptr;
+	Collider* player_col = nullptr;
 	Animation* current_animation = nullptr;
 	Animation idle;
 	Animation left;
