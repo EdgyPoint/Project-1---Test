@@ -9,12 +9,10 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleScoreScene.h"
 
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 #include "ModuleAudio.h"
 #include "SDL/include/SDL.h"
 
-
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModuleIntroScene::ModuleIntroScene()
 {
@@ -47,7 +45,7 @@ bool ModuleIntroScene::CleanUp()
 {
 	LOG("Unloading intro scene");
 	App->textures->Unload(graphics);
-	//collision->Disable();
+	App->collision->Disable();
 	
 	return true;
 }
