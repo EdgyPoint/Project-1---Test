@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-//struct Collider;
+struct Collider;
 
 class Module
 {
@@ -40,7 +40,7 @@ public:
 		}
 	}
 
-	//virtual void OnCollision(Collider*, Collider*) {}
+	virtual void OnCollision(Collider*, Collider*) {}
 };
 
 #endif // __MODULE_H__

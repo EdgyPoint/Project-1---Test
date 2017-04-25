@@ -137,7 +137,7 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 	}
 }
 
-/*void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
+void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -149,4 +149,4 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 			break;
 		}
 	}
-}*/
+}

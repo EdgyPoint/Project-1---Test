@@ -8,7 +8,7 @@
 #include"ModuleCastleScene.h"
 
 #include "ModuleScoreScene.h"
-//#include "ModuleCollision.h"
+#include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
@@ -29,7 +29,7 @@ Application::Application()
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
-	//modules[i++] = collision = new ModuleCollision();
+	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fade = new ModuleFadeToBlack();
 }	
 

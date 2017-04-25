@@ -1,7 +1,7 @@
-/*#ifndef __ModuleCollision_H__
+#ifndef __ModuleCollision_H__
 #define __ModuleCollision_H__
 
-#define MAX_COLLIDERS 50
+#define MAX_COLLIDERS 500
 
 #include "Module.h"
 
@@ -61,4 +61,4 @@ private:
 	bool debug = true;
 };
 
-#endif // __ModuleCollision_H__*/
+#endif // __ModuleCollision_H__
