@@ -42,7 +42,7 @@ bool ModuleScoreScene::Start()
 bool ModuleScoreScene::CleanUp()
 {
 	LOG("Unloading score scene");
-	SDL_DestroyTexture(graphics);
+	App->textures->Unload(graphics);
 	App->player->Disable();
 	//App->collision->Disable();
 
