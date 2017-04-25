@@ -8,7 +8,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleIntroScene.h"
 #include "ModuleCastleScene.h"
-
+#include "ModuleCollision.h"
 #include "ModuleScoreScene.h"
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
@@ -59,11 +59,11 @@ bool ModuleCastleScene::Start()
 	LOG("Loading castle scene");
 	App->player->Enable();
 	App->particles->Enable();
-//	App->collision->Enable();
+	App->collision->Enable();
 	App->enemies->Enable();
 
 	App->enemies->AddEnemy(ENEMY_TYPES::BALLOON, 100, App->render->camera.y - 100);
-//	App->collision->AddCollider(npi, COLLIDER_WALL, this);
+	App->collision->AddCollider(npi, COLLIDER_WALL, this);
 	graphics2 = App->textures->Load("assets/images/Castle Upper Background.png");
 	graphics = App->textures->Load("assets/images/Castle Background.png");
 	graphics3 = App->textures->Load("assets/images/Castle Structures.png");
@@ -84,7 +84,8 @@ bool ModuleCastleScene::CleanUp()
 	SDL_DestroyTexture(graphics3);
 	App->player->Disable();
 	App->particles->Disable();
-	//App->collision->Disable();
+	App->enemies->Disable();
+	App->collision->Disable();
 	houseflag = false;
 	return true;
 }
@@ -117,7 +118,7 @@ update_status ModuleCastleScene::Update()
 	return UPDATE_CONTINUE;
 }
 
-/*void ModuleCastleScene::OnCollision(Collider* c1, Collider* c2)
+void ModuleCastleScene::OnCollision(Collider* c1, Collider* c2)
 {
 
-}*/
+}
