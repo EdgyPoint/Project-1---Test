@@ -177,7 +177,7 @@ update_status ModulePlayer::Update()
 	return UPDATE_CONTINUE;
 }
 
-/*void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c2->type == COLLIDER_PLAYER_SHOT)
 	{
@@ -202,8 +202,4 @@ update_status ModulePlayer::Update()
 			App->fade->FadeToBlack(App->scene_castle, App->scene_score, 0.1f);
 		}
 	}
-		
-
-	
-
-}*/
+}
