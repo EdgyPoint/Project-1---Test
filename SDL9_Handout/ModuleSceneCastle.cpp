@@ -86,10 +86,22 @@ update_status ModuleSceneCastle::Update()
 	yflag += 0.55f;
 
 
-	//--Draw bacground layer
+	//--Draw background layer
 	App->render->Blit(graphics, 0, yflag, &background, 10.0f);
 	// -- Draw background top layer
 	App->render->Blit(graphics2, 0, yflag, &background, 10.0f);
+
+	//--Direct Win--
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN || yflag >= -10)
+	{
+		App->fade->FadeToBlack(this, App->scene_score, 2.0f);
+
+	}
+	//--Direct Loss--
+	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, App->scene_intro, 2.0f);
+	}
 
 	return UPDATE_CONTINUE;
 }
