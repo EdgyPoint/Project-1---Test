@@ -6,6 +6,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleSceneIntro.h" 
 #include "ModuleSceneCastle.h"
 #include "ModuleSceneScore.h"
 #include "ModuleAudio.h"
@@ -61,4 +62,11 @@ update_status ModuleSceneScore::Update()
 	//--Draw background--
 	App->render->Blit(graphics, 0, 0, &background, 0.75f);
 
+	//--Fade to Intro scene--
+	if (App->input->keyboard[SDL_SCANCODE_SPACE] && fading == false)
+	{
+		App->fade->FadeToBlack(this, App->scene_intro, 1.0f);
+	}
+
+	return UPDATE_CONTINUE;
 }

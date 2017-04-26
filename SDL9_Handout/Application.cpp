@@ -47,9 +47,10 @@ bool Application::Init()
 
 	// Deactivate modules here ----
 	scene_castle->Disable();
+	scene_score->Disable();
 	player->Disable();
-	collision->Disable();
-	//enemies->Disable();
+	player2->Disable();
+	
 	// ----------------------------
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
