@@ -90,18 +90,23 @@ update_status ModuleParticles::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE collider_type, float speed_x, float speed_y, Uint32 delay, bool using_camera)
 {
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		if(active[i] == nullptr)
+		if (active[i] == nullptr)
 		{
 			Particle* p = new Particle(particle);
 			p->born = SDL_GetTicks() + delay;
+
+			if (speed_x != 0)
+				p->speed.x = speed_x;
+			if (speed_y != 0)
+				p->speed.y = speed_y;
+
 			p->position.x = x;
 			p->position.y = y;
-			if(collider_type != COLLIDER_NONE)
-				p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
+			p->collider = App->collision->AddCollider(p->anim.GetCurrentFrame(), collider_type, this);
 			active[i] = p;
 			break;
 		}

@@ -5,9 +5,8 @@
 #include "ModuleParticles.h"
 #include "ModuleTextures.h"
 #include "Enemy.h"
-#include "Enemy_RedBird.h"
-#include "Enemy_BrownShip.h"
-#include "Enemy_Mech.h"
+#include "EnemyBalloon.h"
+
 
 #define SPAWN_MARGIN 50
 
@@ -25,7 +24,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	// Create a prototype for each enemy available so we can copy them around
-	sprites = App->textures->Load("rtype/enemies.png");
+	sprites = App->textures->Load("assets/images/enemies.png");
 
 	return true;
 }
@@ -41,6 +40,7 @@ update_status ModuleEnemies::PreUpdate()
 			{
 				SpawnEnemy(queue[i]);
 				queue[i].type = ENEMY_TYPES::NO_TYPE;
+				LOG("Spawning enemy at %d", queue[i].x * SCREEN_SIZE);
 			}
 		}
 	}
@@ -51,11 +51,17 @@ update_status ModuleEnemies::PreUpdate()
 // Called before render is available
 update_status ModuleEnemies::Update()
 {
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
-		if(enemies[i] != nullptr) enemies[i]->Move();
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->Move();
 
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
-		if(enemies[i] != nullptr) enemies[i]->Draw(sprites);
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr &&  enemies[i]->aditionalanimation) enemies[i]->Extra_animation();
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->Draw(sprites, enemies[i]);
+
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
+		if (enemies[i] != nullptr) enemies[i]->Shoot();
 
 	return UPDATE_CONTINUE;
 }
@@ -69,6 +75,7 @@ update_status ModuleEnemies::PostUpdate()
 		{
 			if(enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
 			{
+				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}
@@ -97,7 +104,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
+bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y, int option)
 {
 	bool ret = false;
 
@@ -108,6 +115,7 @@ bool ModuleEnemies::AddEnemy(ENEMY_TYPES type, int x, int y)
 			queue[i].type = type;
 			queue[i].x = x;
 			queue[i].y = y;
+			queue[i].pathoption = option;
 			ret = true;
 			break;
 		}
@@ -126,28 +134,27 @@ void ModuleEnemies::SpawnEnemy(const EnemyInfo& info)
 	{
 		switch(info.type)
 		{
-			case ENEMY_TYPES::REDBIRD:
-			enemies[i] = new Enemy_RedBird(info.x,info.y);
+		case ENEMY_TYPES::BALLOON:
+			enemies[i] = new EnemyBalloon(info.x, info.y, info.pathoption);
 			break;
-			case ENEMY_TYPES::BROWNSHIP:
-			enemies[i] = new Enemy_BrownShip(info.x, info.y);
-			break;
-			case ENEMY_TYPES::MECH:
-			enemies[i] = new Enemy_Mech(info.x, info.y);
-			break;
+			
 		}
 	}
 }
 
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
-			App->particles->AddParticle(App->particles->explosion, enemies[i]->position.x, enemies[i]->position.y);
-			delete enemies[i];
-			enemies[i] = nullptr;
+			enemies[i]->OnCollision(c2, enemies[i]);
+			if (enemies[i]->hp <= 0.0f)
+			{
+				enemies[i]->ToDie(enemies[i], c2);
+				delete enemies[i];
+				enemies[i] = nullptr;
+			}
 			break;
 		}
 	}

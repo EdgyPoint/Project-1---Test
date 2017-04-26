@@ -65,20 +65,11 @@
     <ClInclude Include="ModuleEnemies.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_RedBird.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
-      <Filter>Modules\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_BrownShip.h">
       <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_Mech.h">
-      <Filter>Modules\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ModuleFonts.h">
       <Filter>Modules</Filter>
@@ -94,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="ModuleSceneCastle.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBalloon.h">
+      <Filter>Modules\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -136,16 +130,7 @@
     <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_RedBird.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_BrownShip.cpp">
-      <Filter>Modules\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_Mech.cpp">
       <Filter>Modules\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="ModuleFonts.cpp">
@@ -162,6 +147,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSceneCastle.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBalloon.cpp">
+      <Filter>Modules\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleFadeToBlack.h"
@@ -43,7 +44,7 @@ update_status ModuleSceneIntro::Update()
 
 	if(App->input->keyboard[SDL_SCANCODE_SPACE] == KEY_DOWN && App->fade->IsFading() == false)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene_space);
+		App->fade->FadeToBlack(this, (Module*)App->scene_castle);
 	}
 
 	return UPDATE_CONTINUE;

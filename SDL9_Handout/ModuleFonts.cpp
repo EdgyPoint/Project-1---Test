@@ -48,6 +48,7 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 	fonts[id].rows = rows; // rows: rows of characters in the texture
 	fonts[id].len = 0; // len: length of the table
 
+	uint tex_height, tex_width;
 
 	App->textures->GetSize(fonts[id].graphic, tex_width, tex_height);
 

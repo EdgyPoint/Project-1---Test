@@ -29,6 +29,7 @@ Application::Application()
 	modules[i++] = scene_score = new ModuleSceneScore();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
+	modules[i++] = player2 = new ModulePlayer2();
 	modules[i++] = particles = new ModuleParticles();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = fade = new ModuleFadeToBlack();
@@ -48,7 +49,7 @@ bool Application::Init()
 	scene_castle->Disable();
 	player->Disable();
 	collision->Disable();
-	enemies->Disable();
+	//enemies->Disable();
 	// ----------------------------
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)

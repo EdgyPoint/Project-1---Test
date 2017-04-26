@@ -2,13 +2,14 @@
 #define __PATH_H__
 
 #include "p2Point.h"
-#define MAX_STEPS 25
+#define MAX_STEPS 30
 
 struct Step
 {
 	uint frames = 1;
 	fPoint speed;
 	Animation* animation = nullptr;
+	bool active = false;
 };
 
 class Path

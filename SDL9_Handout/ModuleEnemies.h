@@ -2,16 +2,20 @@
 #define __ModuleEnemies_H__
 
 #include "Module.h"
-#include "Enemy_RedBird.h"
+#include "EnemyBalloon.h"
 
 #define MAX_ENEMIES 100
 
 enum ENEMY_TYPES
 {
 	NO_TYPE,
-	REDBIRD,
-	BROWNSHIP,
-	MECH,
+	BALLOON,
+	REDBOMB,
+	HOUSE1,
+	HOUSE2,
+	TURRETCOPTER,
+	CASTLEMORTAR,
+	VASE,
 };
 
 class Enemy;
@@ -19,7 +23,7 @@ class Enemy;
 struct EnemyInfo
 {
 	ENEMY_TYPES type = ENEMY_TYPES::NO_TYPE;
-	int x, y;
+	int x, y, pathoption;
 };
 
 class ModuleEnemies : public Module
@@ -36,7 +40,7 @@ public:
 	bool CleanUp();
 	void OnCollision(Collider* c1, Collider* c2);
 
-	bool AddEnemy(ENEMY_TYPES type, int x, int y);
+	bool AddEnemy(ENEMY_TYPES type, int x, int y, int pathoption);
 
 private:
 
