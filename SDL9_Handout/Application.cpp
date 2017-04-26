@@ -3,10 +3,13 @@
 #include "ModuleRender.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
-#include "ModuleSceneSpace.h"
+#include "ModuleAudio.h"
+#include "ModuleSceneScore.h"
+#include "ModuleSceneCastle.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
@@ -19,9 +22,11 @@ Application::Application()
 	modules[i++] = render = new ModuleRender();
 	modules[i++] = input = new ModuleInput();
 	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = fonts = new ModuleFonts();
 	modules[i++] = scene_intro = new ModuleSceneIntro();
-	modules[i++] = scene_space = new ModuleSceneSpace();
+	modules[i++] = scene_castle = new ModuleSceneCastle();
+	modules[i++] = scene_score = new ModuleSceneScore();
 	modules[i++] = enemies = new ModuleEnemies();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = particles = new ModuleParticles();
@@ -40,7 +45,7 @@ bool Application::Init()
 	bool ret = true;
 
 	// Deactivate modules here ----
-	scene_space->Disable();
+	scene_castle->Disable();
 	player->Disable();
 	collision->Disable();
 	enemies->Disable();
