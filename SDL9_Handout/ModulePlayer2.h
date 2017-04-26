@@ -1,6 +1,6 @@
 #include "Module.h"
 
-class ModulePlayer2: public Module
+class ModulePlayer2 : public Module
 {
 public:
 	ModulePlayer2();
