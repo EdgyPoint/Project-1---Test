@@ -68,7 +68,7 @@ void EnemyBalloon::Move()
 
 void EnemyBalloon::Shoot()
 {
-	/*if (path.steps[2].active == true || path.steps[4].active == true)
+	if (path.steps[2].active == true || path.steps[4].active == true)
 	{
 		if (reload == 0 || reload == 40)
 		{
@@ -84,5 +84,5 @@ void EnemyBalloon::Shoot()
 	else if (reload != 0)
 	{
 		reload = 0;
-	}*/
+	}
 }
